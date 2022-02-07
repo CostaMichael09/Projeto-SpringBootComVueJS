@@ -5,7 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.example.owse.dto.usersDTO;
+import com.example.owse.dto.UsersDTO;
 import com.example.owse.entity.users;
 import com.example.owse.repository.usersRepository;
 import com.example.owse.service.mapper.usersMapper;
@@ -19,21 +19,21 @@ public class usersService {
 	usersMapper UsersMapper;
 	
 	
-	public Page<usersDTO> List(Pageable pageable){
+	public Page<UsersDTO> List(Pageable pageable){
 		Page<users> UsersPage = UsersRepository.findAll(pageable);
 		int totalElements = UsersPage.getNumberOfElements();
 		
 		return UsersMapper.usersPageToUserDTOPage(UsersPage, pageable, totalElements);
 	}
 	
-	public usersDTO save(usersDTO UsersDTO) {
+	public UsersDTO save(UsersDTO UsersDTO) {
 		users Users = UsersMapper.usersDTOToUser(UsersDTO);
 		Users = UsersRepository.save(Users);
 		
 		return UsersMapper.usersToUserDTO(Users);
 	}
 	
-	public usersDTO byId(Long id) {
+	public UsersDTO byId(Long id) {
 		users Users = UsersRepository.getOne(id);
 		return UsersMapper.usersToUserDTO(Users);
 	}

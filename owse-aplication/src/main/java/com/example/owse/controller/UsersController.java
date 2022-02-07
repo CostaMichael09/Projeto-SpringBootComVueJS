@@ -8,8 +8,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import com.example.owse.dto.usersDTO;
+import com.example.owse.dto.UsersDTO;
 import com.example.owse.service.usersService;
 
 import lombok.*;
@@ -17,41 +18,41 @@ import lombok.*;
 
 @RestController
 @RequestMapping(value = "/users")
-public class usersController {
+public class UsersController {
 	@Autowired
 	usersService UsersService;
 	
 	
 	//get
 	@RequestMapping(value = "", method = RequestMethod.GET)
-	public Page<usersDTO> list(Pageable pageable) {
+	public Page<UsersDTO> list(Pageable pageable) {
 		return UsersService.List(pageable);
 	}
 	
 	//id GET
 	@RequestMapping(value = "/(id)", method = RequestMethod.GET )
-	public usersDTO getById(@PathVariable("id") Long id) {
+	public UsersDTO getById(@PathVariable("id") Long id) {
 		return UsersService.byId(id);
 	}
 	
 	//POST
 	@RequestMapping(value = "", method = RequestMethod.POST)
-	public usersDTO add(@RequestBody usersDTO UsersDTO) {
+	public UsersDTO add(@RequestBody UsersDTO UsersDTO) {
 		return UsersService.save(UsersDTO);
 	}
 	
 	//Update
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public usersDTO update(@PathVariable("id") Long id, @RequestBody usersDTO UsersDTO) {
+    public UsersDTO update(@PathVariable("id") Long id, @RequestBody UsersDTO usersDTO) {
 		
 		//Preciso puxar o usersDTOBuilder, porém fica dando erro!
-		usersDTO.usersDTOBuilder usersDTOBuilder = UsersDTO.toBuilder();
+		UsersDTO.UsersDTOBuilder usersDTOBuilder = usersDTO.toBuilder();
 		
-		UsersDTO = usersDTOBuilder
+		usersDTO = usersDTOBuilder
 				.id(id)
 				.build();
 		
-		return UsersService.save(UsersDTO);
+		return UsersService.save(usersDTO);
 		
 	}
 		

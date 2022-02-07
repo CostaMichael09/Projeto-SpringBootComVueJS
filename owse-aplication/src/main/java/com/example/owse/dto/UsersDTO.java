@@ -9,7 +9,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder(toBuilder = true)
-public class usersDTO {
+public class UsersDTO {
 	
 	private Long id;
 	private String name;

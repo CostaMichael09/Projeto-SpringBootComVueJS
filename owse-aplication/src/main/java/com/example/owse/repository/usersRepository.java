@@ -8,4 +8,5 @@ import com.example.owse.entity.users;
 @Repository
 public interface usersRepository extends JpaRepository<users, Long> {
 	
+	users findByLogin(String username);
 }

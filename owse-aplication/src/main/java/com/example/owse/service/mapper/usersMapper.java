@@ -11,7 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.example.owse.dto.usersDTO;
-import com.example.owse.entity.users;
+import com.example.owse.entity.User;
 
 @Service
 public class usersMapper {
@@ -19,28 +19,28 @@ public class usersMapper {
 	@Autowired
 	ModelMapper modelMapper;
 	
-	public users usersDTOToUser(usersDTO UserDTO) {
-		return modelMapper.map(UserDTO,  users.class);
+	public User usersDTOToUser(usersDTO UserDTO) {
+		return modelMapper.map(UserDTO,  User.class);
 		
 	}
 	
-	public usersDTO usersToUserDTO(users User) {
+	public usersDTO usersToUserDTO(User User) {
 		return modelMapper.map(User, usersDTO.class);
 	}
 	
-	public List<users> usersDTOListToUserList(List<usersDTO> usersDTOList){
+	public List<User> usersDTOListToUserList(List<usersDTO> usersDTOList){
 		return usersDTOList.stream()
 				.map(this::usersDTOToUser)
 				.collect(Collectors.toList());
 	}
 	
-	public List<usersDTO> usersListToUserDTOList(List<users> usersList){
+	public List<usersDTO> usersListToUserDTOList(List<User> usersList){
 		return usersList.stream()
 				.map(this::usersToUserDTO)
 				.collect(Collectors.toList());
 	}
 	
-	public Page<usersDTO> usersPageToUserDTOPage(Page<users> usersPage, Pageable pageable, int total){
+	public Page<usersDTO> usersPageToUserDTOPage(Page<User> usersPage, Pageable pageable, int total){
 		return new PageImpl<usersDTO>(
 			usersPage.stream()
 				.map(this::usersToUserDTO)

@@ -12,7 +12,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder(toBuilder = true)
-public class users implements Serializable {
+public class User implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	

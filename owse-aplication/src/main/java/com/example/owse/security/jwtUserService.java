@@ -10,7 +10,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.example.owse.entity.users;
+import com.example.owse.entity.User;
 import com.example.owse.repository.usersRepository;
 
 @Service
@@ -22,7 +22,7 @@ public class jwtUserService implements UserDetailsService{
 	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException{
-		users Users = UsersRepository.findByLogin(username);
+		User Users = UsersRepository.findByLogin(username);
 		
 		if(Users == null) {
 			throw new UsernameNotFoundException("Usuario nào existe");
